@@ -1,28 +1,30 @@
 #include <iostream>
 #include "Human.h"
+#include <iomanip>
 
 String Human::getFirstName() const { return this->firstName; }
 String Human::getLastName() const { return this->lastName; }
 int Human::getBirthYear() const { return this->birthYear; }
 
-void Human::setFirstName(const String first) { this->firstName = first; }
-void Human::setLastName(const String last) { this->lastName = last; }
+void Human::setFirstName(const String& first) { this->firstName = first; }
+void Human::setLastName(const String& last) { this->lastName = last; }
 void Human::setBirthYear(int year) { this->birthYear = year; }
 
-void Human::input(istream& in) 
-{
-	cout << "Ââåäèòå èìÿ: ";
-	in >> this->firstName;
-	cout << "Ââåäèòå ôàìèëèþ: ";
-	in >> this->lastName;
-	cout << "Ââåäèòå ãîä ðîæäåíèÿ: ";
-	in >> this->birthYear;
+void Human::input(istream& in) {
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ: ";
+    in >> firstName;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÑŽ: ";
+    in >> lastName;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð³Ð¾Ð´ Ñ€Ð¾Ð¶Ð´ÐµÐ½Ð¸Ñ: ";
+    in >> birthYear;
 }
-void Human::output(ostream& out) const 
-{
-	out << "Èìÿ: " << this->firstName << "\n";
-	out << "Ôàìèëèÿ: " << this->lastName << "\n";
-	out << "Ãîä ðîæäåíèÿ: " << this->birthYear << "\n";
+
+void Human::output(ostream& out) const {
+    out << left << setw(15) << firstName << setw(15) << lastName << setw(12) << birthYear;
+}
+
+void Human::printHeader(ostream& out) const {
+    out << left << setw(15) << "Ð˜Ð¼Ñ" << setw(15) << "Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ" << setw(12) << "Ð“Ð¾Ð´ Ñ€Ð¾Ð¶Ð´.";
 }
 
 istream& operator>>(istream& in, Human& human) {
