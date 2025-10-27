@@ -29,88 +29,78 @@ bool TeacherCommissionMember::setCommissionWork(int index, const String work) {
     return false;
 }
 
-void TeacherCommissionMember::input(istream& in) {
-    Human::input(in);
+//void TeacherCommissionMember::input(istream& in) {
+//    Human::input(in);
+//    in.ignore(1000, '\n');
+//    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚ÑŒ: ";
+//    in >> position;
+//    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ð¾ÑÑ‚ÑŒ: ";
+//    in >> specialty;
+//    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð½Ð°ÑƒÑ‡Ð½Ñ‹Ñ… Ñ‚Ñ€ÑƒÐ´Ð¾Ð²: ";
+//    in >> publicationsCount;
+//    in.ignore(1000, '\n');
+//    if (publicationsCount > MAX_PUBLICATIONS) {
+//        publicationsCount = MAX_PUBLICATIONS;
+//    }
+//    for (int i = 0; i < publicationsCount; i++) {
+//        cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°ÑƒÑ‡Ð½Ñ‹Ð¹ Ñ‚Ñ€ÑƒÐ´ " << (i + 1) << ": ";
+//        in >> scientificPublications[i];
+//    }
+//    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ ÐºÐ¾Ð¼Ð¸ÑÑÐ¸Ð¸: ";
+//    in >> commissionName;
+//    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¿ÑƒÐ½ÐºÑ‚Ð¾Ð² Ð°Ð²Ñ‚Ð¾Ð±Ð¸Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸: ";
+//    in >> biographyCount;
+//    in.ignore(1000, '\n');
+//    if (biographyCount > MAX_BIOGRAPHY) {
+//        biographyCount = MAX_BIOGRAPHY;
+//    }
+//    for (int i = 0; i < biographyCount; i++) {
+//        cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÑƒÐ½ÐºÑ‚ Ð°Ð²Ñ‚Ð¾Ð±Ð¸Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸ " << (i + 1) << ": ";
+//        in >> biography[i];
+//    }
+//    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ñ€Ð°Ð±Ð¾Ñ‚ Ð² ÐºÐ¾Ð¼Ð¸ÑÑÐ¸Ð¸: ";
+//    in >> worksCount;
+//    in.ignore(1000, '\n');
+//    if (worksCount > MAX_COMMISSION_WORKS) {
+//        worksCount = MAX_COMMISSION_WORKS;
+//    }
+//
+//    for (int i = 0; i < worksCount; i++) {
+//        cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ñƒ Ð² ÐºÐ¾Ð¼Ð¸ÑÑÐ¸Ð¸ " << (i + 1) << ": ";
+//        in >> commissionWorks[i];
+//    }
+//}
+//
+//void TeacherCommissionMember::output(ostream& out) const {
+//    Human::output(out);
+//
+//    out << left
+//        << setw(20) << position
+//        << setw(25) << specialty
+//        << setw(25) << commissionName;
+//
+//    String worksList = "";
+//    for (int i = 0; i < worksCount; i++) {
+//        if (i > 0) worksList += ", ";
+//        worksList += commissionWorks[i];
+//    }
+//    out << setw(40) << worksList;
+//}
 
-    in.ignore(1000, '\n');
+void TeacherCommissionMember::printHeader(ostream& out) const {
+    Human::printHeader(out);
 
-    cout << "Ââåäèòå äîëæíîñòü: ";
-    in >> position;
-
-    cout << "Ââåäèòå ñïåöèàëüíîñòü: ";
-    in >> specialty;
-
-    cout << "Ââåäèòå êîëè÷åñòâî íàó÷íûõ òðóäîâ: ";
-    in >> publicationsCount;
-    in.ignore(1000, '\n');
-
-    if (publicationsCount > MAX_PUBLICATIONS) {
-        publicationsCount = MAX_PUBLICATIONS;
-    }
-
-    for (int i = 0; i < publicationsCount; i++) {
-        cout << "Ââåäèòå íàó÷íûé òðóä " << (i + 1) << ": ";
-        in >> scientificPublications[i];
-    }
-
-    cout << "Ââåäèòå íàçâàíèå êîìèññèè: ";
-    in >> commissionName;
-
-    cout << "Ââåäèòå êîëè÷åñòâî ïóíêòîâ àâòîáèîãðàôèè: ";
-    in >> biographyCount;
-    in.ignore(1000, '\n');
-
-    if (biographyCount > MAX_BIOGRAPHY) {
-        biographyCount = MAX_BIOGRAPHY;
-    }
-
-    for (int i = 0; i < biographyCount; i++) {
-        cout << "Ââåäèòå ïóíêò àâòîáèîãðàôèè " << (i + 1) << ": ";
-        in >> biography[i];
-    }
-
-    cout << "Ââåäèòå êîëè÷åñòâî ðàáîò â êîìèññèè: ";
-    in >> worksCount;
-    in.ignore(1000, '\n');
-
-    if (worksCount > MAX_COMMISSION_WORKS) {
-        worksCount = MAX_COMMISSION_WORKS;
-    }
-
-    for (int i = 0; i < worksCount; i++) {
-        cout << "Ââåäèòå ðàáîòó â êîìèññèè " << (i + 1) << ": ";
-        in >> commissionWorks[i];
-    }
-}
-
-void TeacherCommissionMember::output(ostream& out) const {
-    Human::output(out);
-
-    out << left;
-    out << setw(20) << "Äîëæíîñòü:" << position << "\n"
-        << setw(20) << "Ñïåöèàëüíîñòü:" << specialty << "\n"
-        << setw(20) << "Íàó÷íûå òðóäû:" << publicationsCount << " ïóáëèêàöèé\n";
-
-    for (int i = 0; i < publicationsCount; i++) {
-        out << "  " << setw(2) << (i + 1) << ". " << scientificPublications[i] << "\n";
-    }
-
-    out << setw(20) << "Êîìèññèÿ:" << commissionName << "\n"
-        << setw(20) << "Àâòîáèîãðàôèÿ:" << biographyCount << " ïóíêòîâ\n";
-
-    for (int i = 0; i < biographyCount; i++) {
-        out << "  " << setw(2) << (i + 1) << ". " << biography[i] << "\n";
-    }
-
-    out << setw(20) << "Ðàáîòû â êîìèññèè:" << worksCount << " ðàáîò\n";
-
-    for (int i = 0; i < worksCount; i++) {
-        out << "  " << setw(2) << (i + 1) << ". " << commissionWorks[i] << "\n";
-    }
+    out << left
+        << setw(20) << "Ð”Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚ÑŒ"
+        << setw(25) << "Ð¡Ð¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ð¾ÑÑ‚ÑŒ"
+        << setw(25) << "ÐšÐ¾Ð¼Ð¸ÑÑÐ¸Ñ"
+        << setw(40) << "Ð Ð°Ð±Ð¾Ñ‚Ñ‹ Ð² ÐºÐ¾Ð¼Ð¸ÑÑÐ¸Ð¸"
+        << "\n";
 }
 
 istream& operator>>(istream& in, TeacherCommissionMember& teacherMember) {
-    teacherMember.input(in);
+    /*teacherMember.input(in);*/
+
     return in;
 }
 
