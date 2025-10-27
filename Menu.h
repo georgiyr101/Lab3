@@ -9,7 +9,6 @@
 #include "TeacherCommissionMember.h"
 
 
-void menuHuman(Human& h);
 void menuTeacher(Teacher& t);
 void menuCommissionMember(CommissionMember& c);
 void menuTeacherCommissionMember(TeacherCommissionMember& tcm);
