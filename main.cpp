@@ -9,45 +9,40 @@ using namespace std;
 int main() {
     setlocale(LC_ALL, "ru");
 
+
     int choice;
     while (true) {
         system("cls");
-        cout << "\n Ãëàâíîå ìåíþ \n";
-        cout << "1. Ðàáîòà ñ Human\n";
-        cout << "2. Ðàáîòà ñ Teacher\n";
-        cout << "3. Ðàáîòà ñ CommissionMember\n";
-        cout << "4. Ðàáîòà ñ TeacherCommissionMember\n";
-        cout << "0. Âûõîä\n";
-        cout << "Âàø âûáîð: ";
+        cout << "\n Ð“Ð»Ð°Ð²Ð½Ð¾Ðµ Ð¼ÐµÐ½ÑŽ \n";
+        cout << "1. Ð Ð°Ð±Ð¾Ñ‚Ð° Ñ Teacher\n";
+        cout << "2. Ð Ð°Ð±Ð¾Ñ‚Ð° Ñ CommissionMember\n";
+        cout << "3. Ð Ð°Ð±Ð¾Ñ‚Ð° Ñ TeacherCommissionMember\n";
+        cout << "0. Ð’Ñ‹Ñ…Ð¾Ð´\n";
+        cout << "Ð’Ð°Ñˆ Ð²Ñ‹Ð±Ð¾Ñ€: ";
         cin >> choice;
         cin.ignore(1000, '\n');
 
         switch (choice) {
         case 1: {
-            Human h;
-            menuHuman(h);
-            break;
-        }
-        case 2: {
             Teacher t;
             menuTeacher(t);
             break;
         }
-        case 3: {
+        case 2: {
             CommissionMember c;
             menuCommissionMember(c);
             break;
         }
-        case 4: {
+        case 3: {
             TeacherCommissionMember tcm;
             menuTeacherCommissionMember(tcm);
             break;
         }
         case 0:
-            cout << "Âûõîä èç ïðîãðàììû...\n";
+            cout << "Ð’Ñ‹Ñ…Ð¾Ð´ Ð¸Ð· Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹...\n";
             return 0;
         default:
-            cout << "Íåâåðíûé âûáîð!\n";
+            cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€!\n";
         }
     }
 }
