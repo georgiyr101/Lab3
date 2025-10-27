@@ -24,12 +24,13 @@ public:
 	String getLastName() const;
 	int getBirthYear() const;
 
-	void setFirstName(const String first);
-	void setLastName(const String last);
+	void setFirstName(const String& first);
+	void setLastName(const String& last);
 	void setBirthYear(int year);
 
 	virtual void input(istream& in);
 	virtual void output(ostream& out) const;
+	virtual void printHeader(ostream& out) const;
 
 };
 
