@@ -15,18 +15,18 @@ protected:
 public:
 	CommissionMember(){}
 	CommissionMember(String firstName, String lastName, int birthYear, String commissionName): Human(firstName, lastName, birthYear), commissionName(commissionName), biographyCount(0) {}
-	~CommissionMember() {}
 
 	String getCommissionName() const;
 	int getBiographyCount() const;
 	String getBiography(int index) const;
 
-	void setCommissionName(const String commissionName);
-	bool addBiography(const String biographyLine);
-	bool setBiography(int index, const String biographyLine);
+	void setCommissionName(const String& commissionName);
+	bool addBiography(const String& biographyLine);
+	bool setBiography(int index, const String& biographyLine);
 
-	void input(istream& in) override;
-	void output(ostream& out) const override;
+	virtual void input(istream& in) override;
+	virtual void output(ostream& out) const override;
+	virtual void printHeader(ostream& out) const override;
 };
 
 istream& operator>>(istream& in, CommissionMember& member);
