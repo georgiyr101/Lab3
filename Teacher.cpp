@@ -17,14 +17,11 @@ String Teacher::getScientificPublication(int index) const
     return String("");
 }
 
-void Teacher::setPosition(const String position) {this->position = position;}
+void Teacher::setPosition(const String& position) {this->position = position;}
 
-void Teacher::setSpecialty(const String specialty) 
-{
-    this->specialty = specialty;
-}
+void Teacher::setSpecialty(const String& specialty) {this->specialty = specialty;}
 
-bool Teacher::addScientificPublication(const String publication) 
+bool Teacher::addScientificPublication(const String& publication) 
 {
     if (publicationsCount < MAX_PUBLICATIONS) 
     {
@@ -35,7 +32,7 @@ bool Teacher::addScientificPublication(const String publication)
     return false;
 }
 
-bool Teacher::setScientificPublication(int index, const String publication) 
+bool Teacher::setScientificPublication(int index, const String& publication) 
 {
     if (index >= 0 && index < publicationsCount) 
     {
@@ -49,13 +46,13 @@ void Teacher::input(istream& in)
 {
     Human::input(in);
     in.ignore(1000, '\n');
-    cout << "Ââåäèòå äîëæíîñòü: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚ÑŒ: ";
     in >> this->position;
 
-    cout << "Ââåäèòå ñïåöèàëüíîñòü: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ð¾ÑÑ‚ÑŒ: ";
     in >> this->specialty;
 
-    cout << "Ââåäèòå êîëè÷åñòâî íàó÷íûõ òðóäîâ: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð½Ð°ÑƒÑ‡Ð½Ñ‹Ñ… Ñ‚Ñ€ÑƒÐ´Ð¾Ð²: ";
     in >> this->publicationsCount;
     in.ignore(1000, '\n');
 
@@ -66,21 +63,35 @@ void Teacher::input(istream& in)
 
     for (int i = 0; i < publicationsCount; i++) 
     {
-        cout << "Ââåäèòå íàó÷íûé òðóä " << (i + 1) << ": ";
+        cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°ÑƒÑ‡Ð½Ñ‹Ð¹ Ñ‚Ñ€ÑƒÐ´ " << (i + 1) << ": ";
         in >> this->scientificPublications[i];
     }
 }
+//
+//
+//void Teacher::output(ostream& out) const {
+//    Human::output(out); 
+//
+    /*out << left
+        << setw(20) << position
+        << setw(25) << specialty;
 
-void Teacher::output(ostream& out) const {
-    Human::output(out);
+    String publicationsList = "";
+    for (int i = 0; i < publicationsCount; i++) {
+        if (i > 0) publicationsList += ", ";
+        publicationsList += scientificPublications[i];
+    }
+    out << setw(40) << publicationsList;*/
+//}
 
-    out << left;
-    out << setw(15) << "Äîëæíîñòü:" << position << "\n"
-        << setw(15) << "Ñïåöèàëüíîñòü:" << specialty << "\n"
-        << setw(15) << "Íàó÷íûå òðóäû:" << publicationsCount << "\n";
+void Teacher::printHeader(ostream& out) const {
+    Human::printHeader(out); 
 
-    for (int i = 0; i < publicationsCount; i++) out << setw(4) << "" << setw(3) << (i + 1) << ". " << scientificPublications[i] << "\n";
-    
+    out << left
+        << setw(20) << "Ð”Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚ÑŒ"
+        << setw(25) << "Ð¡Ð¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ð¾ÑÑ‚ÑŒ"
+        << setw(40) << "ÐÐ°ÑƒÑ‡Ð½Ñ‹Ðµ Ñ‚Ñ€ÑƒÐ´Ñ‹"
+        << "\n";
 }
 
 istream& operator>>(istream& in, Teacher& teacher)
@@ -91,6 +102,16 @@ istream& operator>>(istream& in, Teacher& teacher)
 
 ostream& operator<<(ostream& out, const Teacher& teacher) 
 {
-    teacher.output(out);
-    return out;
+    /*teacher.output(out);
+    return out;*/
+
+    out << static_cast<const Human&>(teacher);
+    out << left << setw(20) << teacher.position << setw(25) << teacher.specialty;
+
+    String publicationsList = "";
+    for (int i = 0; i < publicationsCount; i++) {
+        if (i > 0) publicationsList += ", ";
+        publicationsList += scientificPublications[i];
+    }
+    out << setw(40) << publicationsList;
 }
