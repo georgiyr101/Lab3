@@ -12,9 +12,9 @@ String CommissionMember::getBiography(int index) const
     return String("");
 }
 
-void CommissionMember::setCommissionName(const String commissionName) {this->commissionName = commissionName;}
+void CommissionMember::setCommissionName(const String& commissionName) {this->commissionName = commissionName;}
 
-bool CommissionMember::addBiography(const String biographyLine) 
+bool CommissionMember::addBiography(const String& biographyLine) 
 {
     if (biographyCount < MAX_BIOGRAPHY) 
     {
@@ -25,7 +25,7 @@ bool CommissionMember::addBiography(const String biographyLine)
     return false;
 }
 
-bool CommissionMember::setBiography(int index, const String biographyLine) 
+bool CommissionMember::setBiography(int index, const String& biographyLine) 
 {
     if (index >= 0 && index < biographyCount) 
     {
@@ -39,29 +39,41 @@ void CommissionMember::input(istream& in)
 {
     Human::input(in);
     in.ignore(1000, '\n');
-    cout << "Ââåäèòå íàçâàíèå êîìèññèè: ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ ÐºÐ¾Ð¼Ð¸ÑÑÐ¸Ð¸: ";
     in >> commissionName;
-    cout << "Ââåäèòå êîëè÷åñòâî ïóíêòîâ àâòîáèîãðàôèè (ìàêñ " << MAX_BIOGRAPHY << "): ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¿ÑƒÐ½ÐºÑ‚Ð¾Ð² Ð°Ð²Ñ‚Ð¾Ð±Ð¸Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸ (Ð¼Ð°ÐºÑ " << MAX_BIOGRAPHY << "): ";
     in >> biographyCount;
     in.ignore(1000, '\n');
     if (biographyCount > MAX_BIOGRAPHY) biographyCount = MAX_BIOGRAPHY;
 
     for (int i = 0; i < biographyCount; i++) 
     {
-        cout << "Ââåäèòå ïóíêò àâòîáèîãðàôèè " << (i + 1) << ": ";
+        cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÑƒÐ½ÐºÑ‚ Ð°Ð²Ñ‚Ð¾Ð±Ð¸Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸ " << (i + 1) << ": ";
         in >> biography[i];
     }
 }
 
-void CommissionMember::output(ostream& out) const 
-{
+void CommissionMember::output(ostream& out) const {
     Human::output(out);
 
-    out << left;
-    out << setw(20) << "Êîìèññèÿ:" << commissionName << "\n"
-        << setw(20) << "Àâòîáèîãðàôèÿ:" << biographyCount << " ïóíêòîâ\n";
+    out << left
+        << setw(25) << commissionName;
 
-    for (int i = 0; i < biographyCount; i++) out << "  " << setw(2) << (i + 1) << ". " << biography[i] << "\n";
+    String bioList = "";
+    for (int i = 0; i < biographyCount; i++) {
+        if (i > 0) bioList += ", ";
+        bioList += biography[i];
+    }
+    out << setw(50) << bioList;
+}
+
+void CommissionMember::printHeader(ostream& out) const {
+    Human::printHeader(out);
+
+    out << left
+        << setw(25) << "ÐšÐ¾Ð¼Ð¸ÑÑÐ¸Ñ"
+        << setw(50) << "ÐÐ²Ñ‚Ð¾Ð±Ð¸Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ñ"
+        << "\n";
 }
 
 istream& operator>>(istream& in, CommissionMember& member) 
